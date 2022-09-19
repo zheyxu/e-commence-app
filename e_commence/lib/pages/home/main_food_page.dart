@@ -1,4 +1,4 @@
-import 'package:e_commence/home/food_page_body.dart';
+import 'package:e_commence/pages/home/food_page_body.dart';
 import 'package:e_commence/utils/colors.dart';
 import 'package:e_commence/utils/dimensions.dart';
 import 'package:e_commence/widgets/big_text.dart';
