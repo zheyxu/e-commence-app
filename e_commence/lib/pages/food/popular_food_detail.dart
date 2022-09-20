@@ -3,6 +3,7 @@ import 'package:e_commence/utils/dimensions.dart';
 import 'package:e_commence/widgets/app_column.dart';
 import 'package:e_commence/widgets/app_icon.dart';
 import 'package:e_commence/widgets/big_text.dart';
+import 'package:e_commence/widgets/expandable_text_widget.dart';
 import 'package:e_commence/widgets/icon_and_text_widget.dart';
 import 'package:e_commence/widgets/small_text.dart';
 import 'package:flutter/material.dart';
@@ -63,13 +64,23 @@ class PopularFoodDetail extends StatelessWidget {
                       SizedBox(
                         height: Dimensions.height20,
                       ),
-                      BigText(text: "Introduce")
+                      BigText(text: "Introduce"),
+                      SizedBox(
+                        height: Dimensions.height20,
+                      ),
+                      Expanded(
+                        child: SingleChildScrollView(
+                          child: ExpandableTextWidget(
+                              text:
+                                  "This recipe is all about spice. As I went to put together a traditional tandoori marinade for these chicken kebabs, I paused for a minute and decided to take things in a new direction. I kept the yogurt base, which keeps the meat juicy, as well as the lemon, ginger, garlic, and cumin. But then, instead of mixing in an Indian spice blend, I tried an equal combo of smoked paprika, hot paprika, and cayenne. The resulting kebabs were equally, if not more, delicious than the tandoori chicken I'd originally set out to make. The two paprikas gave a strong smoky and spicy boost to the moist, tender chicken. It just goes to show how even a small change can create something totally and wonderfully new."),
+                        ),
+                      ),
                     ],
                   )))
         ],
       ),
       bottomNavigationBar: Container(
-        height: 120,
+        height: Dimensions.bottomHeightBar,
         padding: EdgeInsets.only(
             top: Dimensions.height30,
             bottom: Dimensions.height30,
@@ -101,7 +112,10 @@ class PopularFoodDetail extends StatelessWidget {
                   SizedBox(
                     width: Dimensions.width10 / 2,
                   ),
-                  BigText(text: "0"),
+                  BigText(
+                    text: "0",
+                    size: Dimensions.font15,
+                  ),
                   SizedBox(
                     width: Dimensions.width10 / 2,
                   ),
@@ -120,6 +134,7 @@ class PopularFoodDetail extends StatelessWidget {
                   right: Dimensions.width20),
               child: BigText(
                 text: "\$10 | Add to cart",
+                size: Dimensions.font15,
                 color: Colors.white,
               ),
               decoration: BoxDecoration(
