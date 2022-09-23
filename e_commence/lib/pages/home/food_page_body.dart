@@ -2,6 +2,8 @@ import 'package:dots_indicator/dots_indicator.dart';
 import 'package:e_commence/controllers/popular_product_controller.dart';
 import 'package:e_commence/controllers/recommended_product_controller.dart';
 import 'package:e_commence/models/products_model.dart';
+import 'package:e_commence/pages/food/popular_food_detail.dart';
+import 'package:e_commence/routes/route_helper.dart';
 import 'package:e_commence/utils/app_constants.dart';
 import 'package:e_commence/utils/colors.dart';
 import 'package:e_commence/utils/dimensions.dart';
@@ -51,15 +53,20 @@ class _FoodPageBodyState extends State<FoodPageBody> {
             return popularProducts.isLoaded
                 ? Container(
                     height: Dimensions.pageView,
-                    child: PageView.builder(
-                        controller: pageController,
-                        itemCount: popularProducts.popularProductList.isEmpty
-                            ? 1
-                            : popularProducts.popularProductList.length,
-                        itemBuilder: ((context, position) {
-                          return _buildPageItem(position,
-                              popularProducts.popularProductList[position]);
-                        })),
+                    child: GestureDetector(
+                      onTap: () {
+                        Get.toNamed(RouteHelper.getPopularFood());
+                      },
+                      child: PageView.builder(
+                          controller: pageController,
+                          itemCount: popularProducts.popularProductList.isEmpty
+                              ? 1
+                              : popularProducts.popularProductList.length,
+                          itemBuilder: ((context, position) {
+                            return _buildPageItem(position,
+                                popularProducts.popularProductList[position]);
+                          })),
+                    ),
                   )
                 : CircularProgressIndicator(
                     color: AppColors.mainColor,
