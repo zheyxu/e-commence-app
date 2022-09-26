@@ -1,4 +1,6 @@
+import 'package:e_commence/controllers/popular_product_controller.dart';
 import 'package:e_commence/pages/home/main_food_page.dart';
+import 'package:e_commence/utils/app_constants.dart';
 import 'package:e_commence/utils/colors.dart';
 import 'package:e_commence/utils/dimensions.dart';
 import 'package:e_commence/widgets/app_column.dart';
@@ -11,10 +13,14 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class PopularFoodDetail extends StatelessWidget {
-  const PopularFoodDetail({super.key});
+  final int pageId;
+  const PopularFoodDetail({super.key, required this.pageId});
 
   @override
   Widget build(BuildContext context) {
+    var product =
+        Get.find<PopularProductController>().popularProductList[pageId];
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: Stack(
@@ -28,7 +34,9 @@ class PopularFoodDetail extends StatelessWidget {
                 decoration: BoxDecoration(
                     image: DecorationImage(
                         fit: BoxFit.cover,
-                        image: AssetImage("assets/image/food0.png"))),
+                        image: NetworkImage(AppConstants.BASE_URL +
+                            AppConstants.UPLOAD_URL +
+                            product.img!))),
               )),
           Positioned(
               top: Dimensions.height45,
@@ -65,7 +73,7 @@ class PopularFoodDetail extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       AppColumn(
-                        text: 'Chinese Side',
+                        text: product.name!,
                       ),
                       SizedBox(
                         height: Dimensions.height20,
@@ -76,9 +84,8 @@ class PopularFoodDetail extends StatelessWidget {
                       ),
                       Expanded(
                         child: SingleChildScrollView(
-                          child: ExpandableTextWidget(
-                              text:
-                                  "This recipe is all about spice. As I went to put together a traditional tandoori marinade for these chicken kebabs, I paused for a minute and decided to take things in a new direction. I kept the yogurt base, which keeps the meat juicy, as well as the lemon, ginger, garlic, and cumin. But then, instead of mixing in an Indian spice blend, I tried an equal combo of smoked paprika, hot paprika, and cayenne. The resulting kebabs were equally, if not more, delicious than the tandoori chicken I'd originally set out to make. The two paprikas gave a strong smoky and spicy boost to the moist, tender chicken. It just goes to show how even a small change can create something totally and wonderfully new."),
+                          child:
+                              ExpandableTextWidget(text: product.description!),
                         ),
                       ),
                     ],
@@ -139,7 +146,7 @@ class PopularFoodDetail extends StatelessWidget {
                   left: Dimensions.width20,
                   right: Dimensions.width20),
               child: BigText(
-                text: "\$10 | Add to cart",
+                text: "\$ ${product.price!} | Add to cart",
                 size: Dimensions.font15,
                 color: Colors.white,
               ),
