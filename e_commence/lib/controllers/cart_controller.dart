@@ -4,7 +4,6 @@ import 'package:e_commence/models/products_model.dart';
 import 'package:e_commence/utils/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_connect/http/src/utils/utils.dart';
 
 class CartController extends GetxController {
   final CartRepo cartRepo;
@@ -68,5 +67,13 @@ class CartController extends GetxController {
       });
     }
     return quantity;
+  }
+
+  int get totalItems {
+    var totalQuantity = 0;
+    _items.forEach((key, value) {
+      totalQuantity += value.quantity!;
+    });
+    return totalQuantity;
   }
 }
