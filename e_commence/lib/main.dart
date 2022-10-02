@@ -8,6 +8,7 @@ import 'package:e_commence/routes/route_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'helper/dependencies.dart' as dep;
+import 'pages/cart/cart_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized(); //make sure the dependnecies load
