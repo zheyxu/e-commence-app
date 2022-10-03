@@ -4,6 +4,7 @@ import 'package:e_commence/controllers/recommended_product_controller.dart';
 import 'package:e_commence/pages/cart/cart_page.dart';
 import 'package:e_commence/routes/route_helper.dart';
 import 'package:e_commence/utils/app_constants.dart';
+import 'package:e_commence/utils/button_constants.dart';
 import 'package:e_commence/utils/colors.dart';
 import 'package:e_commence/utils/dimensions.dart';
 import 'package:e_commence/widgets/app_icon.dart';
@@ -194,6 +195,14 @@ class RecommendedFoodDetail extends StatelessWidget {
                     onTap: () {
                       controller.addItem(product);
                     },
+                    onTapDown: (event) {
+                      AppButtonConstants.isButtonTap =
+                          controller.updateButtonColor(true);
+                    },
+                    onTapUp: (event) {
+                      AppButtonConstants.isButtonTap =
+                          controller.updateButtonColor(false);
+                    },
                     child: Container(
                       padding: EdgeInsets.only(
                           top: Dimensions.height10,
@@ -208,7 +217,9 @@ class RecommendedFoodDetail extends StatelessWidget {
                       decoration: BoxDecoration(
                           borderRadius:
                               BorderRadius.circular(Dimensions.radius15),
-                          color: AppColors.mainColor),
+                          color: AppButtonConstants.isButtonTap
+                              ? AppColors.mainDeepColor
+                              : AppColors.mainColor),
                     ),
                   )
                 ],

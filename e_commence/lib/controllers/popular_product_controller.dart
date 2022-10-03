@@ -88,6 +88,13 @@ class PopularProductController extends GetxController {
     update();
   }
 
+  // to change the color when Add to cart button is clicked
+  bool updateButtonColor(bool isTouching) {
+    bool newBool = isTouching;
+    update();
+    return newBool;
+  }
+
   int get totalItems {
     return _cart.totalItems;
   }

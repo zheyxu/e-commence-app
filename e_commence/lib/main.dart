@@ -1,14 +1,10 @@
 import 'package:e_commence/controllers/popular_product_controller.dart';
 import 'package:e_commence/controllers/recommended_product_controller.dart';
-import 'package:e_commence/pages/food/popular_food_detail.dart';
-import 'package:e_commence/pages/food/recommended_food_detail.dart';
-import 'package:e_commence/pages/home/food_page_body.dart';
 import 'package:e_commence/pages/home/main_food_page.dart';
 import 'package:e_commence/routes/route_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'helper/dependencies.dart' as dep;
-import 'pages/cart/cart_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized(); //make sure the dependnecies load

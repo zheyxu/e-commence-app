@@ -3,6 +3,7 @@ import 'package:e_commence/controllers/popular_product_controller.dart';
 import 'package:e_commence/pages/cart/cart_page.dart';
 import 'package:e_commence/pages/home/main_food_page.dart';
 import 'package:e_commence/utils/app_constants.dart';
+import 'package:e_commence/utils/button_constants.dart';
 import 'package:e_commence/utils/colors.dart';
 import 'package:e_commence/utils/dimensions.dart';
 import 'package:e_commence/widgets/app_column.dart';
@@ -12,14 +13,19 @@ import 'package:e_commence/widgets/expandable_text_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class PopularFoodDetail extends StatelessWidget {
+class PopularFoodDetail extends StatefulWidget {
   final int pageId;
   const PopularFoodDetail({super.key, required this.pageId});
 
   @override
+  State<PopularFoodDetail> createState() => _PopularFoodDetailState();
+}
+
+class _PopularFoodDetailState extends State<PopularFoodDetail> {
+  @override
   Widget build(BuildContext context) {
     var product =
-        Get.find<PopularProductController>().popularProductList[pageId];
+        Get.find<PopularProductController>().popularProductList[widget.pageId];
     Get.find<PopularProductController>()
         .initProduct(product, Get.find<CartController>());
 
@@ -193,6 +199,14 @@ class PopularFoodDetail extends StatelessWidget {
                   onTap: () {
                     popularProduct.addItem(product);
                   },
+                  onTapDown: (event) {
+                    AppButtonConstants.isButtonTap =
+                        popularProduct.updateButtonColor(true);
+                  },
+                  onTapUp: (event) {
+                    AppButtonConstants.isButtonTap =
+                        popularProduct.updateButtonColor(false);
+                  },
                   child: Container(
                     padding: EdgeInsets.only(
                         top: Dimensions.height10,
@@ -207,7 +221,9 @@ class PopularFoodDetail extends StatelessWidget {
                     decoration: BoxDecoration(
                         borderRadius:
                             BorderRadius.circular(Dimensions.radius15),
-                        color: AppColors.mainColor),
+                        color: AppButtonConstants.isButtonTap
+                            ? AppColors.mainDeepColor
+                            : AppColors.mainColor),
                   ),
                 )
               ],

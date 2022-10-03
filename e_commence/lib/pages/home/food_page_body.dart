@@ -2,7 +2,6 @@ import 'package:dots_indicator/dots_indicator.dart';
 import 'package:e_commence/controllers/popular_product_controller.dart';
 import 'package:e_commence/controllers/recommended_product_controller.dart';
 import 'package:e_commence/models/products_model.dart';
-import 'package:e_commence/pages/food/popular_food_detail.dart';
 import 'package:e_commence/routes/route_helper.dart';
 import 'package:e_commence/utils/app_constants.dart';
 import 'package:e_commence/utils/colors.dart';
@@ -13,7 +12,6 @@ import 'package:e_commence/widgets/icon_and_text_widget.dart';
 import 'package:e_commence/widgets/small_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_connect/http/src/utils/utils.dart';
 
 class FoodPageBody extends StatefulWidget {
   const FoodPageBody({super.key});
