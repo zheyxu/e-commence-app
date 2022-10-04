@@ -19,13 +19,15 @@ class CartController extends GetxController {
         totalQuantity = value.quantity! + quantity;
 
         return CartModel(
-            id: value.id,
-            name: value.name,
-            price: value.price,
-            img: value.img,
-            quantity: value.quantity! + quantity,
-            isExist: true,
-            time: DateTime.now().toString());
+          id: value.id,
+          name: value.name,
+          price: value.price,
+          img: value.img,
+          quantity: value.quantity! + quantity,
+          isExist: true,
+          time: DateTime.now().toString(),
+          product: product,
+        );
       });
       if (totalQuantity <= 0) {
         _items.remove(product.id);
@@ -34,13 +36,15 @@ class CartController extends GetxController {
       if (quantity > 0) {
         _items.putIfAbsent(product.id!, () {
           return CartModel(
-              id: product.id,
-              name: product.name,
-              price: product.price,
-              img: product.img,
-              quantity: quantity,
-              isExist: true,
-              time: DateTime.now().toString());
+            id: product.id,
+            name: product.name,
+            price: product.price,
+            img: product.img,
+            quantity: quantity,
+            isExist: true,
+            time: DateTime.now().toString(),
+            product: product,
+          );
         });
       } else {
         Get.snackbar(
@@ -48,6 +52,7 @@ class CartController extends GetxController {
             backgroundColor: AppColors.mainColor, colorText: Colors.white);
       }
     }
+    update();
   }
 
   bool existInCart(ProductModel product) {
@@ -81,5 +86,13 @@ class CartController extends GetxController {
     return _items.entries.map((e) {
       return e.value;
     }).toList();
+  }
+
+  int get totalAmount {
+    var total = 0;
+    _items.forEach((key, value) {
+      total += value.quantity! * value.price!;
+    });
+    return total;
   }
 }
