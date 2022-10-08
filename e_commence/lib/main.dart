@@ -1,3 +1,4 @@
+import 'package:e_commence/controllers/cart_controller.dart';
 import 'package:e_commence/controllers/popular_product_controller.dart';
 import 'package:e_commence/controllers/recommended_product_controller.dart';
 import 'package:e_commence/routes/route_helper.dart';
@@ -16,6 +17,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Get.find<CartController>().getCartData();
     return GetBuilder<PopularProductController>(builder: (_) {
       return GetBuilder<RecommendedProductController>(builder: (_) {
         return GetMaterialApp(
